@@ -114,3 +114,60 @@ test("validateComponentName", async (t) => {
     }
   );
 });
+
+test("validateDataKey", async (t) => {
+  await t.test("should not throw an error if data key is valid", () => {
+    assert.doesNotThrow(() => {
+      validation.validateDataKey("test");
+    });
+  });
+
+  await t.test("should throw an error if data key is invalid", async (t) => {
+    const kError = {
+      name: "Error",
+      message: "Invalid key",
+    };
+
+    await t.test("should throw an error if data key is undefined", () => {
+      assert.throws(() => {
+        validation.validateDataKey();
+      }, kError);
+    });
+
+    await t.test("should throw an error if data key is null", () => {
+      assert.throws(() => {
+        validation.validateDataKey(null);
+      }, kError);
+    });
+
+    await t.test("should throw an error if data key is an object", () => {
+      assert.throws(() => {
+        validation.validateDataKey({});
+      }, kError);
+    });
+
+    await t.test("should throw an error if data key is an array", () => {
+      assert.throws(() => {
+        validation.validateDataKey([]);
+      }, kError);
+    });
+
+    await t.test(
+      "should throw an error if data key is a string with only spaces",
+      () => {
+        assert.throws(() => {
+          validation.validateDataKey(" ");
+        }, kError);
+      }
+    );
+
+    await t.test(
+      "should throw an error if data key is a string with only tabs",
+      () => {
+        assert.throws(() => {
+          validation.validateDataKey(" ");
+        }, kError);
+      }
+    );
+  });
+});
