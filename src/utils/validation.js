@@ -19,4 +19,10 @@ function validateComponentName(componentName) {
   }
 }
 
-export { validateComponent, validateComponentName };
+function validateDataKey(key) {
+  if (!key || typeof key !== "string" || key.trim().length === 0) {
+    throw new Error("Invalid key");
+  }
+}
+
+export { validateComponent, validateComponentName, validateDataKey };
