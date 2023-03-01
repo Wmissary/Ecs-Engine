@@ -35,7 +35,6 @@ Removes a component from the entity. componentName is a string that represents t
 entity.removeComponent('TestComponent'); // Returns the Entity instance
 ```
 
-
 ### `getComponent(componentName: string): Object`
 
 Retrieves a component from the entity. componentName is a string that represents the name of the component to be retrieved. Returns null if the component is not found.
